@@ -7,7 +7,7 @@ export const buttonVariants = cva(
   "active:scale-95 inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 disabled:opacity-50 dark:focus:ring-slate-400 disabled:pointer-events-none dark:focus:ring-offset-slate-900",
   {
     variants: {
-      variants: {
+      variant: {
         default:
           "bg-slate-900 text-white hover:bg-slate-800 dark:bg-slate-200 dark:text-slate-900 dark:hover:bg-slate-100",
         outline:
@@ -24,7 +24,7 @@ export const buttonVariants = cva(
     },
     defaultVariants: {
       size: "default",
-      variants: "default",
+      variant: "default",
     },
   }
 );
@@ -36,12 +36,12 @@ interface ButtonProps
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, size, children, variants, isLoading, ...props }, ref) => {
+  ({ className, size, children, variant, isLoading, ...props }, ref) => {
     return (
       <button
         ref={ref}
         {...props}
-        className={cn(buttonVariants({ size, className, variants }))}
+        className={cn(buttonVariants({ size, className, variant }))}
         disabled={isLoading}
       >
         {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
