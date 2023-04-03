@@ -1,3 +1,5 @@
+"use client";
+
 import { FC, useState, useEffect } from "react";
 import { defaultProps, type Language } from "prism-react-renderer";
 import { useTheme } from "next-themes";
@@ -28,10 +30,8 @@ const Code: FC<CodeProps> = ({
       let i = 0;
       setTimeout(() => {
         const intervalId = setInterval(() => {
-          console.log(i);
           setText(code.slice(0, i));
           i++;
-          console.log(`code text : ${text}`);
           if (i > code.length) {
             clearInterval(intervalId);
           }
@@ -43,7 +43,6 @@ const Code: FC<CodeProps> = ({
   }, [code, show, animated, animationDelay]);
 
   const lines = text.split(/\r\n|\r|\n/).length;
-  console.log("lines :" + lines);
 
   const theme = applicationTheme === "light" ? lightTheme : darkTheme;
 
@@ -62,9 +61,8 @@ const Code: FC<CodeProps> = ({
           {tokens.map((line, i) => {
             // eslint-disable-next-line no-unused-vars
             const { key, ...rest } = getLineProps({ line, key: i });
-
             return (
-              <div key={`line-${i}`} style={{ position: "relative" }}>
+              <div key={`line-${i}`} style={{ position: "relative" }} {...rest}>
                 {line.map((token, index) => {
                   // eslint-disable-next-line no-unused-vars
                   const { key, ...props } = getTokenProps({ token, i });
