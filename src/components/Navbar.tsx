@@ -4,11 +4,12 @@ import { buttonVariants } from "./ui/Button";
 import SignInButton from "...@/components/ui/SignInButton";
 import SignOutButton from "@/components/ui/SignOutButton";
 import ThemeToggle from "@/components/ThemeToggle";
+import { authOptions } from "@/lib/auth";
 
 interface NavbarProps {}
 
 const Navbar = async ({}) => {
-  const session = await getServerSession();
+  const session = await getServerSession(authOptions);
 
   return (
     <div className="fixed top-0 right-0 left-0 backdrop-blur-sm bg-white/75 dark:bg-slate-900 z-50 h-20 border-b border-slate-300 dark:border-slate-700 shadow-sm flex justify-between items-center">
