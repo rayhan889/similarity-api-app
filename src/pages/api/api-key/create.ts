@@ -5,6 +5,7 @@ import { CreateApiKey } from "../../../types/api-type";
 import { db } from "@/lib/db";
 import { nanoid } from "nanoid";
 import { z } from "zod";
+import { methodsProtect } from "@/lib/api-middleware/methods-protect";
 
 const handler = async (
     req : NextApiRequest,
@@ -49,4 +50,4 @@ const handler = async (
     }
 }
 
-export default handler;
+export default methodsProtect(['POST'], handler);
